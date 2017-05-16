@@ -1,8 +1,11 @@
 {
   "name": "js-stats",
   "version": "1.0.0",
-  "description": "Package implements various statistic methods and distribution functions such as normal, fisher and student-t, and so on",
+  "description": "Package implements various statistics and distribution function",
   "author": "Xianshun Chen",
+  "contributors": [
+    "Xianshun Chen <xs0040@gmail.com>"
+  ],
   "license": "MIT",
   "main": "index.js",
   "directories": {

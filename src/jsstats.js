@@ -89,6 +89,8 @@ var jsstats = jsstats || {};
 
 		this.ntable = [ 1.880794, 1.959964, 2.053749, 2.170090, 2.326348, 2.575829 ];
 
+		this.percentiles = [0.970, 0.975, 0.980, 0.985, 0.990, 0.995];
+
 		this.ttable = 
         [
             [10.57889, 12.7062, 15.89454, 21.20495, 31.82052, 63.65674],
@@ -255,6 +257,18 @@ var jsstats = jsstats || {};
 		}
     	return tcdf;
 	};
+
+	TDistribution.prototype.invCumulativeProbability = function(p, df) {
+		if(!df){
+			df = this.df;
+		}
+		var delta = 0.005;
+        var row = df - 1;
+        var column = Math.round((p - this.percentiles[0]) / delta);
+        column = (column >= 0) ? column : 0;
+        column = (column < this.percentiles.Length) ? column : this.percentiles.length - 1;
+        return (row < this.ttable.length) ? this.ttable[row][column] : this.ntable[column];
+    };
 
 	jsstats.TDistribution = TDistribution;
 
