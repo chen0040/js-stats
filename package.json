@@ -29,6 +29,7 @@
     "meow": "^3.3.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "mocha": "*"
   },
   "bugs": {
