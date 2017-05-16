@@ -12,3 +12,7 @@ var jsstats = jsstats || {};
 		this.sd = sd;
 	};
 })(jsstats);
+
+if(module) {
+	module.exports = jsstats.NormalDistribution;
+}
