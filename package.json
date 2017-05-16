@@ -1,0 +1,38 @@
+{
+  "name": "js-stats",
+  "version": "1.0.0",
+  "description": "Package implements various statistic methods and distribution functions such as normal, fisher and student-t, and so on",
+  "author": "Xianshun Chen",
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "bin": {
+    "js-stats": "./bin/js-stats.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chen0040/js-stats.git"
+  },
+  "keywords": [
+    "statistics",
+    "stats",
+    "distribution-functions"
+  ],
+  "dependencies": {
+    "babel": "^5.8.21",
+    "lodash": "^3.10.1",
+    "meow": "^3.3.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/chen0040/js-stats/issues"
+  },
+  "homepage": "https://github.com/chen0040/js-stats#readme"
+}
