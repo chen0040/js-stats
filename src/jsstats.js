@@ -211,6 +211,146 @@ var jsstats = jsstats || {};
 
 	jsstats.TDistribution = TDistribution;
 
+    var FDistribution = function(df1, df2) {
+        this.df1 = df1;
+        this.df2 = df2;
+        this.EPSILON = 0.0000000001;
+    };
+
+    FDistribution.prototype.L504 = function(a, f, b, iv)
+    {
+        var q = a * f / (a * f + b);
+        var sa = Math.sqrt(q);
+        var sl = Math.log(sa);
+        var ca = Math.sqrt(1 - q);
+        var cl = Math.log(ca);
+        var al = Math.atan(sa / Math.sqrt(-sa * sa + 1));
+        var fp = 1 - 2 * al / Math.PI;
+        var r = 0.0;
+        if (b != 1)
+        {
+            var c = Math.log(2 * sa / Math.PI);
+            fp -= Math.exp(c + cl);
+            if (b != 3)
+            {
+                var n = Math.floor((b - 3) / 2);
+                for (var i = 1; i <= n; i++)
+                {
+                    var x = 2 * i + 1;
+                    r += Math.log((x - 1) / x);
+                    var rr = r + cl * x + c;
+                    if (rr > -78.4)
+                    {
+                        fp -= Math.exp(rr);
+                    }
+                }
+            }
+        }
+
+        if (a != 1)
+        {
+            var c = r;
+
+            if (b > 1)
+            {
+                c += Math.log(b - 1);
+            }
+
+            c += Math.log(2 / Math.PI) + sl + cl * b;
+
+            if (c > -78.4) { fp += Math.exp(c); }
+
+            if (a != 3)
+            {
+                var n = Math.floor((a - 3) / 2);
+                r = 0;
+                for (var i = 1; i <= n; i++)
+                {
+                    var x = i * 2 + 1;
+                    r += Math.log((b + x - 2) / x);
+                    var rr = r + sl * (x - 1) + c;
+                    if (rr > -78.4) { fp += Math.exp(rr); }
+                }
+            }
+        }
+        return fp;
+
+    };
+
+    FDistribution.prototype.L401 = function(a, f, b, iv)
+    {
+        var q = a * f / (a * f + b);
+        var ql = Math.log(q);
+        var fp = 0.0;
+        var c = Math.log(1 - q) * b / 2;
+        if (c > -78.4)
+        {
+            fp = Math.exp(c);
+        }
+
+        if (a != 2)
+        {
+            var n = Math.floor(a / 2 - 1);
+            var r = 0.0;
+            for (var i = 1; i <= n; i++)
+            {
+                var x = 2 * i;
+                r += Math.log(b + x - 2) - Math.log(x) + ql;
+                if (r + c > -78.4)
+                {
+                    fp += Math.exp(r + c);
+                }
+            }
+        }
+
+        if (iv == 1)
+        {
+            fp = 1 - fp;
+        }
+
+        return fp;
+    };
+
+    FDistribution.prototype.ProbF = function(dn, dd, fr)
+    {
+        var f = fr;
+        var a = dn;
+        var b = dd;
+        var iv = 0;
+
+        if (Math.floor(a / 2) * 2 == a)
+        {
+            //even numerator df
+            var fp = this.L401(a, f, b, iv);
+            return fp;
+        }
+        else if (Math.floor(b / 2) * 2 != b)
+        {
+            var fp = this.L504(a, f, b, iv);
+            return fp;
+        }
+
+        f = 1 / f;
+        a = dd;
+        b = dn;
+        iv = 1;
+        return this.L401(a, f, b, iv);
+
+    };
+
+    FDistribution.prototype.cumulativeProbability = function(F) {
+        if (this.df1 > .01 & this.df2 > .01 & F > this.EPSILON)
+        {
+            var p = 1 - this.ProbF(this.df1, this.df2, F);
+            return p;
+        }
+        else
+        {
+            console.error("df1, df2, and F must be numbers greater than 0.");
+        }
+    };
+
+    jsstats.FDistribution = FDistribution;
 
 })(jsstats);
 
