@@ -25,7 +25,8 @@ var jsstats = jsstats || {};
 	};
 
 	NormalDistribution.prototype.invCumulativeProbability = function(p) {
-		return this.Sqrt2 * this.invErrorFunc(2 * p - 1);
+		var Z = this.Sqrt2 * this.invErrorFunc(2 * p - 1);
+        return Z * this.sd + this.mean;
 	};
 
 	NormalDistribution.prototype.errorFunc = function(z){

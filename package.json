@@ -1,6 +1,6 @@
 {
   "name": "js-stats",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Package implements various statistics and distribution function",
   "author": "Xianshun Chen",
   "contributors": [
@@ -17,7 +17,7 @@
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "bin": {
-    "js-stats": "./bin/js-stats.js"
+    "js-stats": "./src/jsstats.js"
   },
   "repository": {
     "type": "git",
@@ -29,9 +29,7 @@
     "distribution-functions"
   ],
   "dependencies": {
-    "babel": "^5.8.21",
-    "lodash": "^3.10.1",
-    "meow": "^3.3.0"
+    
   },
   "devDependencies": {
     "chai": "^3.5.0",
