@@ -353,6 +353,65 @@ var jsstats = jsstats || {};
 
     jsstats.FDistribution = FDistribution;
 
+    var ChiSquareDistribution = function(df) {
+        this.df = df;
+    };
+
+    ChiSquareDistribution.prototype.ChiSquaredProbability = function(x) {
+        var a, y = 0, s, e, c, z, val;
+        var df = this.df;
+        var bigx = 20.0;
+        var logSqrtPi = Math.log(Math.sqrt(Math.PI));
+        var rezSqrtPi = 1 / Math.sqrt(Math.PI);
+        if (x <= 0 || df < 1)
+            return (1);
+        a = 0.5 * x;
+        even = ((parseInt(2 * (df / 2), 2)) == df);
+        if (df > 1)
+            y = Math.exp(-a); //((-a < -bigx) ? 0.0 : Math.exp (-a));
+        s = (even ? y : (2.0 * (new jsstats.NormalDistribution(0.0, 1.0).cumulativeProbability(-Math.sqrt(x)))));
+        if (df > 2)
+        {
+            x = 0.5 * (df - 1.0);
+            z = (even ? 1.0 : 0.5);
+            if (a > bigx)
+            {
+                e = (even ? 0.0 : logSqrtPi);
+                c = Math.log(a);
+                while (z <= x)
+                {
+                    e = Math.log(z) + e;
+                    val = c * z - a - e;
+                    s += Math.exp(val); //((val < -bigx) ? 0.0 : Math.exp (val));
+                    z += 1.0;
+                }
+                return (s);
+            }
+            else
+            {
+                e = (even ? 1.0 : (rezSqrtPi / Math.sqrt(a)));
+                c = 0.0;
+                while (z <= x)
+                {
+                    e = e * (a / z);
+                    c = c + e;
+                    z += 1.0;
+                }
+                return (c * y + s);
+            }
+        }
+        else
+        {
+            return (s);
+        }
+    };
+
+    ChiSquareDistribution.prototype.cumulativeProbability = function(x) {
+        return 1 - this.ChiSquaredProbability(x);
+    };
+
+    jsstats.ChiSquareDistribution = ChiSquareDistribution;
+
 })(jsstats);
 
 if(module) {

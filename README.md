@@ -72,7 +72,13 @@ var F = 10.0; // point estimate or test statistic
 var p = f_distribution.cumulativeProbability(F); // cumulative probability
 
 
+//====================Chi Square DISTRIBUTION====================//
 
+var df = 10; // degrees of freedom for cs-distribution
+var cs_distribution = new jsstats.ChiSquareDistribution(df);
+
+var X = 10.0; // point estimate or test statistic
+var p = cs_distribution.cumulativeProbability(X); // cumulative probability
 
 
 
