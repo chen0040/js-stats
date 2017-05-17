@@ -263,11 +263,58 @@ var jsstats = jsstats || {};
 			df = this.df;
 		}
 		var delta = 0.005;
-        var row = df - 1;
-        var column = Math.round((p - this.percentiles[0]) / delta);
-        column = (column >= 0) ? column : 0;
-        column = (column < this.percentiles.Length) ? column : this.percentiles.length - 1;
-        return (row < this.ttable.length) ? this.ttable[row][column] : this.ntable[column];
+        
+        if(p >= 0.5) {
+            var Z1 = 0;
+            for(Z = 0; Z < 100; Z++) {
+                if(this.cumulativeProbability(Z, df) >= p){
+                    break;
+                }
+                Z1 = Z;
+            }
+            var Z2 = Z1;
+            for(var Z = 0.0; Z < 100.0; Z+=1.0) {
+                
+                if(this.cumulativeProbability(Z1 + Z / 100.0) >= p){
+                    break;
+                }
+                Z2 = Z1 + (Z)/100.0;
+            }
+            var Z3 = Z2;
+            for(var Z = 0.0; Z < 100.0; Z+=1.0) {
+                
+                if(this.cumulativeProbability(Z2 + Z / 10000.0) >= p){
+                    break;
+                }
+                Z3 = Z2 + (Z)/10000.0;
+            }
+            return Z3;
+        } else {
+            var Z1 = 0;
+            for(var Z = 0; Z < 100; Z++) {
+                if(this.cumulativeProbability(-Z, df) <= p){
+                    break;
+                }
+                Z1 = Z;
+            }
+            var Z2 = Z1;
+            for(var Z = 0.0; Z < 100.0; Z+=1.0) {
+                
+                if(this.cumulativeProbability(-Z1 - Z / 100.0) <= p){
+                    break;
+                }
+                Z2 = Z1 + (Z) / 100.0;
+            }
+            var Z3 = Z2;
+            for(var Z = 0.0; Z < 100.0; Z+=1.0) {
+                
+                if(this.cumulativeProbability(-Z2 - Z / 10000.0) <= p){
+                    break;
+                }
+                Z3 = Z2 + (Z)/10000.0;
+            }
+            return -Z3;
+        }
     };
 
 	jsstats.TDistribution = TDistribution;
