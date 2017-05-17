@@ -33,6 +33,8 @@ npm install js-stats
 
 # Usage
 
+Sample code is available at [playground](https://runkit.com/chen0040/js-stats-playground)
+
 ### Using with nodejs
 
 ```javascript
