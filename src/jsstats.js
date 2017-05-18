@@ -210,7 +210,7 @@ var jsstats = jsstats || {};
         }
     };
 
-	jsstats.TDistribution = TDistribution;
+	jss.TDistribution = TDistribution;
 
     var FDistribution = function(df1, df2) {
         this.df1 = df1;
@@ -351,7 +351,7 @@ var jsstats = jsstats || {};
         }
     };
 
-    jsstats.FDistribution = FDistribution;
+    jss.FDistribution = FDistribution;
 
     var ChiSquareDistribution = function(df) {
         this.df = df;
@@ -410,7 +410,7 @@ var jsstats = jsstats || {};
         return 1 - this.ChiSquaredProbability(x);
     };
 
-    jsstats.ChiSquareDistribution = ChiSquareDistribution;
+    jss.ChiSquareDistribution = ChiSquareDistribution;
 
 })(jsstats);
 
