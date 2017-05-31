@@ -414,6 +414,7 @@ var jsstats = jsstats || {};
 
 })(jsstats);
 
+var module = module || {};
 if(module) {
 	module.exports = jsstats;
 }
