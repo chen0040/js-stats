@@ -1,5 +1,5 @@
 {
-  "name": "js-stats",
+  "name": "@fizz/js-stats",
   "version": "1.1.0",
   "description": "Package implements various statistics and distribution function",
   "author": "Xianshun Chen",
@@ -8,7 +8,12 @@
   ],
   "license": "MIT",
   "type": "module",
+  "exports": "./src/main.js",
   "main": "index.js",
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.fizz.studio"
+  },
   "directories": {
     "test": "test"
   },
@@ -22,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chen0040/js-stats.git"
+    "url": "git+https://github.com/fizzstudio/js-stats.git"
   },
   "keywords": [
     "statistical distributions",
@@ -50,7 +55,7 @@
     "mocha": "^10.0.0"
   },
   "bugs": {
-    "url": "https://github.com/chen0040/js-stats/issues"
+    "url": "https://github.com/fizzstudio/js-stats/issues"
   },
-  "homepage": "https://github.com/chen0040/js-stats#readme"
+  "homepage": "https://github.com/fizzstudio/js-stats#readme"
 }
