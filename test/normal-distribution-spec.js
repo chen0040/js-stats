@@ -1,5 +1,5 @@
-var expect    = require("chai").expect;
-var jsstats = require("../src/jsstats");
+import {expect} from "chai";
+import * as jsstats from "../src/main.js";
 
 describe("Create normal distribution", function() {
   describe("default constructor", function() {
