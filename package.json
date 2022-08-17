@@ -1,6 +1,6 @@
 {
   "name": "js-stats",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Package implements various statistics and distribution function",
   "author": "Xianshun Chen",
   "contributors": [
@@ -25,31 +25,29 @@
     "url": "git+https://github.com/chen0040/js-stats.git"
   },
   "keywords": [
-    "statistical distributions", 
-    "normal distribution", 
-    "t distribution", 
-    "f distribution", 
-    "Chi-squared distribution", 
-    "probability", 
-    "probability distributions", 
-    "random numbers", 
-    "random variates", 
+    "statistical distributions",
+    "normal distribution",
+    "t distribution",
+    "f distribution",
+    "Chi-squared distribution",
+    "probability",
+    "probability distributions",
+    "random numbers",
+    "random variates",
     "statistics",
     "stats",
     "distribution-functions"
   ],
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
-    "chai":"^4.3.6",
+    "chai": "^4.3.6",
     "coveralls": "^2.13.1",
     "grunt": "^1.0.1",
     "grunt-contrib-uglify": "^3.0.0",
     "grunt-eslint": "^19.0.0",
     "grunt-mocha-test": "^0.13.2",
     "istanbul": "^0.4.5",
-    "mocha":"^10.0.0"
+    "mocha": "^10.0.0"
   },
   "bugs": {
     "url": "https://github.com/chen0040/js-stats/issues"
